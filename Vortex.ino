@@ -2,8 +2,15 @@
 
 */
 #define chipID			0x01
-#define PrimarySize1 		155	
-#define UpdateSize1		34
+#define PrimarySize1 		155				//155 bytes in primary bit stream for circuit #1
+#define PrimarySize2 		155				//155 bytes in primary bit stream for circuit #2
+#define PrimarySize3 		155				//155 bytes in primary bit stream for circuit #3
+#define PrimarySize4 		155				//155 bytes in primary bit stream for circuit #4
+
+#define UpdateSize1		34				//34 bytes in reconfig bit stream for circuit #1
+#define UpdateSize2		34				//34 bytes in reconfig bit stream for circuit #2
+#define UpdateSize3		34				//34 bytes in reconfig bit stream for circuit #3
+#define UpdateSize4		34				//34 bytes in reconfig bit stream for circuit #4
 
 int ACTIVATE = 2;
 int EXECUTE = 3;
@@ -189,6 +196,567 @@ const char UpdateBitStream1[UpdateSize1] =		//set up array of circuit #1 update 
    0x2A
 };
 
+const char PrimaryBitStream2[PrimarySize2] =	//set up array in ROM for bitstream #2
+{  //circuit #2 - 2kHz sinewave oscillator. User should replace the config bitstream below with his own
+   /* The header for the configuration stream */
+   0xD5, /* Synch     */
+   0xB7, /* JTAG0     */
+   0x22, /* JTAG1     */
+   0x0 , /* JTAG2     */
+   0x80, /* JTAG3     */
+   chipID, /* Device ID */
+   0x5 , /* Control   */
+
+   /* Start of data block */
+   0xCC, /* Byte address: 12 */
+   0x0 , /* Bank address:  0 */
+   0xC , /* Byte count:   12 */
+
+   /* Data bytes for block */
+   0x20,  0x0 ,  0x20,  0x4 ,  0x0 ,  0x2 ,  0x2 ,  0x61,  
+   0x0 ,  0x8 ,  0xFF,  0x1 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x0 , /* Bank address:  0 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xF ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCE, /* Byte address: 14 */
+   0x1 , /* Bank address:  1 */
+   0x48, /* Byte count:   72 */
+
+   /* Data bytes for block */
+   0x1 ,  0x48,  0x3F,  0x48,  0x3F,  0x1 ,  0x20,  0x20,  
+   0xFF,  0x20,  0x4 ,  0xFF,  0x0 ,  0x0 ,  0x48,  0x3F,  
+   0x48,  0x3F,  0x2 ,  0x1 ,  0x81,  0x5C,  0x1 ,  0x81,  
+   0xE4,  0x0 ,  0x10,  0xE4,  0x0 ,  0x10,  0x0 ,  0x7 ,  
+   0x5A,  0x1 ,  0x82,  0x7 ,  0x0 ,  0x0 ,  0x3 ,  0x1 ,  
+   0x82,  0xDF,  0x0 ,  0x20,  0x0 ,  0xE0,  0x0 ,  0x20,  
+   0x0 ,  0x48,  0x0 ,  0x5 ,  0xAD,  0x81,  0xAC,  0x0 ,  
+   0x0 ,  0x0 ,  0x0 ,  0x8 ,  0x0 ,  0x98,  0x0 ,  0x0 ,  
+   0x98,  0x8 ,  0x0 ,  0x0 ,  0x41,  0x9D,  0x81,  0xAC,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDB, /* Byte address: 27 */
+   0x3 , /* Bank address:  3 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x90,  0x0 ,  0x90,  0xA ,  0x80,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x4 , /* Bank address:  4 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x5 , /* Bank address:  5 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x6 , /* Bank address:  6 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x7 , /* Bank address:  7 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x8 , /* Bank address:  8 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0x9E, /* Byte address: 30 */
+   0x9 , /* Bank address:  9 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A
+};
+
+const char PrimaryBitStream3[PrimarySize3] =	//set up array in ROM for bitstream #3
+{  //circuit #3 - 3kHz sinewave oscillator. User should replace the config bitstream below with his own
+   /* The header for the configuration stream */
+   0xD5, /* Synch     */
+   0xB7, /* JTAG0     */
+   0x22, /* JTAG1     */
+   0x0 , /* JTAG2     */
+   0x80, /* JTAG3     */
+   chipID, /* Device ID */
+   0x5 , /* Control   */
+
+   /* Start of data block */
+   0xCC, /* Byte address: 12 */
+   0x0 , /* Bank address:  0 */
+   0xC , /* Byte count:   12 */
+
+   /* Data bytes for block */
+   0x20,  0x0 ,  0x20,  0x4 ,  0x0 ,  0x2 ,  0x2 ,  0x61,  
+   0x0 ,  0x8 ,  0xFF,  0x1 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x0 , /* Bank address:  0 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xF ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCE, /* Byte address: 14 */
+   0x1 , /* Bank address:  1 */
+   0x48, /* Byte count:   72 */
+
+   /* Data bytes for block */
+   0x1 ,  0x48,  0x3F,  0x48,  0x3F,  0x1 ,  0x20,  0x20,  
+   0xFF,  0x20,  0x4 ,  0xFF,  0x0 ,  0x0 ,  0x48,  0x3F,  
+   0x48,  0x3F,  0x3 ,  0x1 ,  0x81,  0x8A,  0x1 ,  0x81,  
+   0xE4,  0x0 ,  0x10,  0xE5,  0x0 ,  0x10,  0x0 ,  0x7 ,  
+   0x78,  0x1 ,  0x82,  0x7 ,  0x0 ,  0x0 ,  0x4 ,  0x1 ,  
+   0x82,  0xC6,  0x0 ,  0x20,  0x0 ,  0xC7,  0x0 ,  0x20,  
+   0x0 ,  0x48,  0x0 ,  0x5 ,  0xAD,  0x81,  0xAC,  0x0 ,  
+   0x0 ,  0x0 ,  0x0 ,  0x8 ,  0x0 ,  0x98,  0x0 ,  0x0 ,  
+   0x98,  0x8 ,  0x0 ,  0x0 ,  0x41,  0x9D,  0x81,  0xAC,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDB, /* Byte address: 27 */
+   0x3 , /* Bank address:  3 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x90,  0x0 ,  0x90,  0xA ,  0x80,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x4 , /* Bank address:  4 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x5 , /* Bank address:  5 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x6 , /* Bank address:  6 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x7 , /* Bank address:  7 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x8 , /* Bank address:  8 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0x9E, /* Byte address: 30 */
+   0x9 , /* Bank address:  9 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A
+};
+
+const char PrimaryBitStream4[PrimarySize4] =	//set up array in ROM for bitstream #4
+{  //circuit #4 - 4kHz sinewave oscillator. User should replace the config bitstream below with his own
+   /* The header for the configuration stream */
+   0xD5, /* Synch     */
+   0xB7, /* JTAG0     */
+   0x22, /* JTAG1     */
+   0x0 , /* JTAG2     */
+   0x80, /* JTAG3     */
+   chipID, /* Device ID */
+   0x5 , /* Control   */
+
+   /* Start of data block */
+   0xCC, /* Byte address: 12 */
+   0x0 , /* Bank address:  0 */
+   0xC , /* Byte count:   12 */
+
+   /* Data bytes for block */
+   0x20,  0x0 ,  0x20,  0x4 ,  0x0 ,  0x2 ,  0x2 ,  0x61,  
+   0x0 ,  0x8 ,  0xFF,  0x1 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x0 , /* Bank address:  0 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xF ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCE, /* Byte address: 14 */
+   0x1 , /* Bank address:  1 */
+   0x48, /* Byte count:   72 */
+
+   /* Data bytes for block */
+   0x1 ,  0x48,  0x3F,  0x48,  0x3F,  0x1 ,  0x20,  0x20,  
+   0xFF,  0x20,  0x4 ,  0xFF,  0x0 ,  0x0 ,  0x48,  0x3F,  
+   0x48,  0x3F,  0x4 ,  0x1 ,  0x81,  0xB7,  0x1 ,  0x81,  
+   0xE3,  0x0 ,  0x10,  0xE4,  0x0 ,  0x10,  0x0 ,  0x7 ,  
+   0xB4,  0x1 ,  0x82,  0x7 ,  0x0 ,  0x0 ,  0x6 ,  0x1 ,  
+   0x82,  0xDF,  0x0 ,  0x20,  0x0 ,  0xE0,  0x0 ,  0x20,  
+   0x0 ,  0x48,  0x0 ,  0x5 ,  0xAD,  0x81,  0xAC,  0x0 ,  
+   0x0 ,  0x0 ,  0x0 ,  0x8 ,  0x0 ,  0x98,  0x0 ,  0x0 ,  
+   0x98,  0x8 ,  0x0 ,  0x0 ,  0x41,  0x9D,  0x81,  0xAC,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDB, /* Byte address: 27 */
+   0x3 , /* Bank address:  3 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x90,  0x0 ,  0x90,  0xA ,  0x80,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x4 , /* Bank address:  4 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x5 , /* Bank address:  5 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x6 , /* Bank address:  6 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xDE, /* Byte address: 30 */
+   0x7 , /* Bank address:  7 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCD, /* Byte address: 13 */
+   0x8 , /* Bank address:  8 */
+   0x5 , /* Byte count:    5 */
+
+   /* Data bytes for block */
+   0x3 ,  0x0 ,  0x0 ,  0x0 ,  0x3 ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0x9E, /* Byte address: 30 */
+   0x9 , /* Bank address:  9 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xA ,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A
+};
+
+// const char UpdateBitStream1[UpdateSize1] =		//set up array of circuit #1 update bitstream in ROM
+// {  //circuit #1 - 1kHz sinewave oscillator. User should replace the update bitstream below with his own
+//   /* The header for the configuration stream */
+//   0xD5, /* Synch     */
+//   chipID, /* Device ID */
+//   0x5 , /* Control   */
+
+//   /* Start of data block */
+//   0xC0, /* Byte address:  0 */
+//   0x2 , /* Bank address:  2 */
+//   0xA , /* Byte count:   10 */
+
+//   /* Data bytes for block */
+//   0x1 ,  0x1 ,  0x81,  0x2E,  0x1 ,  0x81,  0xE4,  0x0 ,  
+//   0x10,  0xE5,  
+
+//   /* Check Byte: Inverse Synch */
+//   0x2A,
+
+//   /* Start of data block */
+//   0xCE, /* Byte address: 14 */
+//   0x2 , /* Bank address:  2 */
+//   0x1 , /* Byte count:    1 */
+
+//   /* Data bytes for block */
+//   0x1E,  
+
+//   /* Check Byte: Inverse Synch */
+//   0x2A,
+
+//   /* Start of data block */
+//   0x94, /* Byte address: 20 */
+//   0x2 , /* Bank address:  2 */
+//   0x8 , /* Byte count:    8 */
+
+//   /* Data bytes for block */
+//   0x1 ,  0x1 ,  0x82,  0x95,  0x0 ,  0x20,  0x0 ,  0x95,  
+
+//   /* Check Byte: Inverse Synch */
+//   0x2A
+// };
+
+const char UpdateBitStream2[UpdateSize2] =		//set up array of circuit #2 update bitstream in ROM
+{  //circuit #2 - 2kHz sinewave oscillator. User should replace the update bitstream below with his own
+  /* The header for the configuration stream */
+   0xD5, /* Synch     */
+   chipID, /* Device ID */
+   0x5 , /* Control   */
+
+   /* Start of data block */
+   0xC0, /* Byte address:  0 */
+   0x2 , /* Bank address:  2 */
+   0xA , /* Byte count:   10 */
+
+   /* Data bytes for block */
+   0x2 ,  0x1 ,  0x81,  0x5C,  0x1 ,  0x81,  0xE4,  0x0 ,  
+   0x10,  0xE4,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCE, /* Byte address: 14 */
+   0x2 , /* Bank address:  2 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0x5A,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0x94, /* Byte address: 20 */
+   0x2 , /* Bank address:  2 */
+   0x8 , /* Byte count:    8 */
+
+   /* Data bytes for block */
+   0x3 ,  0x1 ,  0x82,  0xDF,  0x0 ,  0x20,  0x0 ,  0xE0,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A
+};
+
+const char UpdateBitStream3[UpdateSize3] =		//set up array of circuit #3 update bitstream in ROM
+{  //circuit #3 - 3kHz sinewave oscillator. User should replace the update bitstream below with his own
+   /* The header for the configuration stream */
+   0xD5, /* Synch     */
+   chipID, /* Device ID */
+   0x5 , /* Control   */
+
+   /* Start of data block */
+   0xC0, /* Byte address:  0 */
+   0x2 , /* Bank address:  2 */
+   0xA , /* Byte count:   10 */
+
+   /* Data bytes for block */
+   0x3 ,  0x1 ,  0x81,  0x8A,  0x1 ,  0x81,  0xE4,  0x0 ,  
+   0x10,  0xE5,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCE, /* Byte address: 14 */
+   0x2 , /* Bank address:  2 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0x78,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0x94, /* Byte address: 20 */
+   0x2 , /* Bank address:  2 */
+   0x8 , /* Byte count:    8 */
+
+   /* Data bytes for block */
+   0x4 ,  0x1 ,  0x82,  0xC6,  0x0 ,  0x20,  0x0 ,  0xC7,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A
+};
+
+const char UpdateBitStream4[UpdateSize4] =		//set up array of circuit #4 update bitstream in ROM
+{  //circuit #4 - 4kHz sinewave oscillator. User should replace the update bitstream below with his own
+   /* The header for the configuration stream */
+   0xD5, /* Synch     */
+   chipID, /* Device ID */
+   0x5 , /* Control   */
+
+   /* Start of data block */
+   0xC0, /* Byte address:  0 */
+   0x2 , /* Bank address:  2 */
+   0xA , /* Byte count:   10 */
+
+   /* Data bytes for block */
+   0x4 ,  0x1 ,  0x81,  0xB7,  0x1 ,  0x81,  0xE3,  0x0 ,  
+   0x10,  0xE4,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0xCE, /* Byte address: 14 */
+   0x2 , /* Bank address:  2 */
+   0x1 , /* Byte count:    1 */
+
+   /* Data bytes for block */
+   0xB4,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A,
+
+   /* Start of data block */
+   0x94, /* Byte address: 20 */
+   0x2 , /* Bank address:  2 */
+   0x8 , /* Byte count:    8 */
+
+   /* Data bytes for block */
+   0x6 ,  0x1 ,  0x82,  0xDF,  0x0 ,  0x20,  0x0 ,  0xE0,  
+
+   /* Check Byte: Inverse Synch */
+   0x2A
+};
+
 
 void setup() {
   
@@ -289,19 +857,19 @@ void AN221_Reconfig(char update)
 	{
 		case '1':
 			for (i = 0 ; i < UpdateSize1 ; i++)
-				AN221_Write(__elpm_inline(&UpdateBitStream1[i]));	//send update bitstream #1 (from ROM)
+				AN221_Write(&UpdateBitStream1[i]);	//send update bitstream #1 (from ROM)
 			break;
 		case '2':
 			for (i = 0 ; i < UpdateSize2 ; i++)
-				AN221_Write(__elpm_inline(&UpdateBitStream2[i]));	//send update bitstream #2 (from ROM)
+				AN221_Write(&UpdateBitStream2[i]);	//send update bitstream #2 (from ROM)
 			break;
 		case '3':
 			for (i = 0 ; i < UpdateSize3 ; i++)
-				AN221_Write(__elpm_inline(&UpdateBitStream3[i]));	//send update bitstream #3 (from ROM)
+				AN221_Write(&UpdateBitStream3[i]);	//send update bitstream #3 (from ROM)
 			break;
 		case '4':
 			for (i = 0 ; i < UpdateSize4 ; i++)
-				AN221_Write(__elpm_inline(&UpdateBitStream4[i]));	//send update bitstream #4 (from ROM)
+				AN221_Write(&UpdateBitStream4[i]);	//send update bitstream #4 (from ROM)
 			break;
 	}
 	
@@ -327,7 +895,7 @@ void AN221_PriConfig(char circuit)
 {
 	unsigned int i;
 	Serial.print("Preconfiguration");
-	digitalWrite(Yellow,HIGH);							//turn on yellow LED to show configuration is taking place
+	digitalWrite(Yellow_LED,HIGH);							//turn on yellow LED to show configuration is taking place
 	digitalWrite(Red_LED,LOW);							//turn off the red LED
 	digitalWrite(Green_LED,LOW);							//turn off the green LED
 	Serial.print("Configuration begin...");
@@ -341,19 +909,19 @@ void AN221_PriConfig(char circuit)
 	{
 		case '1':
 			for (i = 0 ; i < PrimarySize1 ; i++)
-				AN221_Write(__elpm_inline(&PrimaryBitStream1[i]));	//send config bitstream #1 (from ROM)
+				AN221_Write(&PrimaryBitStream1[i]);	//send config bitstream #1 (from ROM)
 			break;
 		case '2':
 			for (i = 0 ; i < PrimarySize2 ; i++)
-				AN221_Write(__elpm_inline(&PrimaryBitStream2[i]));	//send config bitstream #2 (from ROM)
+				AN221_Write(&PrimaryBitStream2[i]);	//send config bitstream #2 (from ROM)
 			break;
 		case '3':
 			for (i = 0 ; i < PrimarySize3 ; i++)
-				AN221_Write(__elpm_inline(&PrimaryBitStream3[i]));	//send config bitstream #3 (from ROM)
+				AN221_Write(&PrimaryBitStream3[i]);	//send config bitstream #3 (from ROM)
 			break;
 		case '4':
 			for (i = 0 ; i < PrimarySize4 ; i++)
-				AN221_Write(__elpm_inline(&PrimaryBitStream4[i]));	//send config bitstream #4 (from ROM)
+				AN221_Write(&PrimaryBitStream4[i]);	//send config bitstream #4 (from ROM)
 			break;
 	}
 		
